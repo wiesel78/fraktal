@@ -1,5 +1,6 @@
 #include "gtkfraktalsignals.h"
 
+
 gboolean on_draw (  GtkWidget *zeichenflaeche, 
                     cairo_t *cr, 
                     CallbackObject *obj){
@@ -28,7 +29,7 @@ gboolean on_configure ( GtkWidget *zeichenflaeche,
 
 gboolean on_scroll ( GtkWidget *zeichenflaeche,
                      GdkEventScroll *ereignis,
-                     CallbackObject *obj){
+                     CallbackObject *obj ){
     gint x,y;
     x = ereignis->x;
     y = ereignis->y;
@@ -53,7 +54,7 @@ gboolean on_scroll ( GtkWidget *zeichenflaeche,
 gboolean on_button_press ( GtkWidget *zeichenflaeche, 
                            GdkEventButton *event,
                            CallbackObject *obj ){
-    if(event->state & GDK_MOD2_MASK){
+    if( event->state & GDK_MOD2_MASK ){
         obj->x = (int) event->x;
         obj->y = (int) event->y;
         obj->press = TRUE;
@@ -65,7 +66,7 @@ gboolean on_button_press ( GtkWidget *zeichenflaeche,
 gboolean on_button_release ( GtkWidget *zeichenflaeche, 
                              GdkEventButton *event,
                              CallbackObject *obj ){
-    if(event->state & GDK_MOD2_MASK){
+    if( event->state & GDK_MOD2_MASK ){
         obj->press = FALSE;
     }
     
@@ -75,7 +76,7 @@ gboolean on_button_release ( GtkWidget *zeichenflaeche,
 gboolean on_mouse_move ( GtkWidget *zeichenflaeche,
                          GdkEventMotion *event,
                          CallbackObject *obj ){
-    if(obj->press){
+    if( obj->press ){
         fraktal_drag( obj->frakt, 
                       obj->x, obj->y,
                       (int) event->x, (int) event->y );
