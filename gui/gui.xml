@@ -9,11 +9,12 @@
       <object class="GtkDrawingArea" id="zeichenflaeche">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <signal name="scroll-event" handler="on_scroll" swapped="no"/>
-        <signal name="configure-event" handler="on_configure" swapped="no"/>
         <signal name="button-press-event" handler="on_button_press" swapped="no"/>
-        <signal name="button-release-event" handler="on_button_release" swapped="no"/>
         <signal name="draw" handler="on_draw" swapped="no"/>
+        <signal name="configure-event" handler="on_configure" swapped="no"/>
+        <signal name="button-release-event" handler="on_button_release" swapped="no"/>
+        <signal name="motion-notify-event" handler="on_mouse_move" swapped="no"/>
+        <signal name="scroll-event" handler="on_scroll" swapped="no"/>
       </object>
     </child>
   </object>

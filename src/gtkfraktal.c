@@ -16,6 +16,7 @@ int main(int argc, char *argv[]){
     callobj->rgb                = NULL;
     callobj->builder            = gtk_builder_new ();
     callobj->frakt              = &frakt;
+    callobj->press              = FALSE;
     
     gtk_builder_add_from_file ( callobj->builder, PATHGUI, &error );
     gtk_builder_connect_signals ( callobj->builder, callobj );
@@ -28,7 +29,8 @@ int main(int argc, char *argv[]){
     gtk_widget_add_events(  GTK_WIDGET(callobj->zeichenflaeche),
                             GDK_SCROLL_MASK | 
                             GDK_BUTTON_PRESS_MASK | 
-                            GDK_BUTTON_RELEASE_MASK );
+                            GDK_BUTTON_RELEASE_MASK |
+                            GDK_POINTER_MOTION_MASK);
     gtk_widget_set_size_request(    callobj->zeichenflaeche, 
                                     FRAKTAL_WIDTH, 
                                     FRAKTAL_HEIGHT );

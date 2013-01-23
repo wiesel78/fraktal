@@ -17,6 +17,7 @@ typedef struct _CallbackObject
     GdkPixbuf *pixbuf;
     struct f_param *frakt;
     gint x, y;
+    gboolean press;
 } CallbackObject;
 
 #endif 

@@ -56,6 +56,7 @@ gboolean on_button_press ( GtkWidget *zeichenflaeche,
     if(event->state & GDK_MOD2_MASK){
         obj->x = (int) event->x;
         obj->y = (int) event->y;
+        obj->press = TRUE;
     }
     
     return TRUE;
@@ -65,6 +66,16 @@ gboolean on_button_release ( GtkWidget *zeichenflaeche,
                              GdkEventButton *event,
                              CallbackObject *obj ){
     if(event->state & GDK_MOD2_MASK){
+        obj->press = FALSE;
+    }
+    
+    return TRUE;
+}
+
+gboolean on_mouse_move ( GtkWidget *zeichenflaeche,
+                         GdkEventMotion *event,
+                         CallbackObject *obj ){
+    if(obj->press){
         fraktal_drag( obj->frakt, 
                       obj->x, obj->y,
                       (int) event->x, (int) event->y );
@@ -72,7 +83,11 @@ gboolean on_button_release ( GtkWidget *zeichenflaeche,
         fraktal_gtk_draw(zeichenflaeche, obj);
     
         gtk_widget_queue_draw(zeichenflaeche);
+        
+        obj->x = (int) event->x;
+        obj->y = (int) event->y;
     }
     
-    return TRUE;
+    
+    return FALSE;
 }
