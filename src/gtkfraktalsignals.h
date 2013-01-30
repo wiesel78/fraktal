@@ -28,5 +28,7 @@ gboolean on_button_release ( GtkWidget *,
                              GdkEventButton *, 
                              CallbackObject * );
 
-
+gboolean on_mouse_move ( GtkWidget *,
+                         GdkEventMotion *,
+                         CallbackObject * );
 #endif

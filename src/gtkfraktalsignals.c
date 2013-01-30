@@ -54,7 +54,8 @@ gboolean on_scroll ( GtkWidget *zeichenflaeche,
 gboolean on_button_press ( GtkWidget *zeichenflaeche, 
                            GdkEventButton *event,
                            CallbackObject *obj ){
-    if( event->state & GDK_MOD2_MASK ){
+	if( event->type == GDK_BUTTON_PRESS || 
+		event->state & GDK_MOD2_MASK ){
         obj->x = (int) event->x;
         obj->y = (int) event->y;
         obj->press = TRUE;
@@ -66,7 +67,8 @@ gboolean on_button_press ( GtkWidget *zeichenflaeche,
 gboolean on_button_release ( GtkWidget *zeichenflaeche, 
                              GdkEventButton *event,
                              CallbackObject *obj ){
-    if( event->state & GDK_MOD2_MASK ){
+    if( event->type == GDK_BUTTON_RELEASE || 
+		event->state & GDK_MOD2_MASK ){
         obj->press = FALSE;
     }
     
