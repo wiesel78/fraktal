@@ -137,9 +137,20 @@ int fraktal_set_values( struct f_param *frakt ){
 void fraktal_zoom ( struct f_param *frakt, 
                     int x, int y, 
                     double c_width, double c_height){
+    double cx_res, cy_res, cx, cy;
+    int px_distance, py_distance;
     
-    (*frakt).cx = FRAKTAL_CPOSBYPIX((*frakt).cx_min,(*frakt).cx_res, x);
-    (*frakt).cy = FRAKTAL_CPOSBYPIX((*frakt).cy_min,(*frakt).cy_res, y);
+    px_distance = ( x - ((*frakt).width / 2) );
+    py_distance = ( y - ((*frakt).height / 2) );
+    
+    cx_res = FRAKTAL_RESOLUTION( c_width, (*frakt).width );
+    cy_res = FRAKTAL_RESOLUTION( c_height, (*frakt).height );
+    
+    cx = FRAKTAL_CPOSBYPIX( (*frakt).cx_min, (*frakt).cx_res, x );
+    cy = FRAKTAL_CPOSBYPIX( (*frakt).cy_min, (*frakt).cy_res, y );
+    
+    (*frakt).cx = cx - ( px_distance * cx_res );
+    (*frakt).cy = cy - ( py_distance * cy_res );
     
     (*frakt).c_width    = c_width;
     (*frakt).c_height   = c_height;
@@ -155,7 +166,7 @@ void fraktal_zoom ( struct f_param *frakt,
  *      @param zoom is the factor of zoom
  *      @return void
  * */
-void fraktal_zoomin (struct f_param *frakt, int x, int y, double zoom){
+void fraktal_zoom_in (struct f_param *frakt, int x, int y, double zoom){
     double c_width, c_height;
     
     c_width     = FRAKTAL_ZOOMIN( (*frakt).c_width, zoom );
@@ -172,7 +183,7 @@ void fraktal_zoomin (struct f_param *frakt, int x, int y, double zoom){
  *      @param zoom is the factor of zoom
  *      @return void
  * */
-void fraktal_zoomout (struct f_param *frakt, int x, int y, double zoom){
+void fraktal_zoom_out (struct f_param *frakt, int x, int y, double zoom){
     double c_width, c_height;
     
     c_width     = FRAKTAL_ZOOMOUT( (*frakt).c_width, zoom );

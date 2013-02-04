@@ -16,8 +16,8 @@ void fraktal_set_area_full ( struct f_param * );
 int fraktal_set_values( struct f_param * );
 
 void fraktal_zoom ( struct f_param *, int, int, double, double );
-void fraktal_zoomin ( struct f_param *, int, int, double );
-void fraktal_zoomout ( struct f_param *, int, int, double );
+void fraktal_zoom_in ( struct f_param *, int, int, double );
+void fraktal_zoom_out ( struct f_param *, int, int, double );
 
 void fraktal_drag_value (struct f_param *frakt, int , int );
 void fraktal_drag_values_horizontal( struct f_param *, int , int, int );

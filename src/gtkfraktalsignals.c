@@ -35,11 +35,11 @@ gboolean on_scroll ( GtkWidget *zeichenflaeche,
     y = ereignis->y;
     
     if(ereignis->direction == GDK_SCROLL_UP){
-        fraktal_zoomin(obj->frakt, x, y, FRAKTAL_ZOOM);
+        fraktal_zoom_in(obj->frakt, x, y, FRAKTAL_ZOOM);
     }
     
     if(ereignis->direction == GDK_SCROLL_DOWN){
-        fraktal_zoomout(obj->frakt, x, y, FRAKTAL_ZOOM);
+        fraktal_zoom_out(obj->frakt, x, y, FRAKTAL_ZOOM);
     }
     
     fraktal_set_area_full( obj->frakt );
